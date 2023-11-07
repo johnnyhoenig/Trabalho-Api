@@ -80,7 +80,7 @@ function atualizarNome(req, res){
     res.status(err.id).json({msg: err.message});
   }
 }
-function atualizarNome(req, res){
+function atualizarSenha(req, res){
   const user = req.body;
   matricula = user.matricula;
   senha = user.senha;
@@ -115,5 +115,6 @@ module.exports = {
     pesquisarPorLikeNome,
     buscarPorMatricual,
     atualizarNome,
-    atualizarEmail
+    atualizarEmail,
+    atualizarSenha
 }

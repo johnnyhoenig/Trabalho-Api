@@ -7,9 +7,9 @@ function listar(req, res) {
 }
 
 function inserir(req, res) {
-    let produto = req.body;
+    let livro = req.body;
     try {
-      livrosService.inserir(produto);
+      livrosService.inserir(livro);
       res.status(201).json({msg:'Inserido com sucesso!'})
     }
     catch(err) {
@@ -30,10 +30,11 @@ function buscarPorId(req, res) {
 
 function atualizarNomeLivro(req, res) {
     const id = +req.params.id;
-    let nome = req.body;
-  
+    let livro = req.body;
+    let nomeLivro = livro.nome;
+    // console.log(nome);
     try{ 
-      livrosService.atualizarNomeLivro(id, nome);
+      livrosService.atualizarNomeLivro(id, nomeLivro);
       res.json({msg:'livro atualizado com sucesso'});
     }
     catch(err) {
@@ -43,9 +44,10 @@ function atualizarNomeLivro(req, res) {
 function atualizarNomeAutor(req, res) {
     const id = +req.params.id;
     let autor = req.body;
+    let nomeAutor = autor.nome;
   
     try{ 
-      livrosService.atualizarAutorLivro(id, autor);
+      livrosService.atualizarAutorLivro(id, nomeAutor);
       res.json({msg:'livro atualizado com sucesso'});
     }
     catch(err) {
@@ -55,10 +57,11 @@ function atualizarNomeAutor(req, res) {
 
 function atualizarEditoraLivro(req, res) {
     const id = +req.params.id;
-    let autor = req.body;
+    let editora = req.body;
+    let nomeEditora = editora.nome;
   
     try{ 
-      livrosService.atualizarEditoraLivro(id, autor);
+      livrosService.atualizarEditoraLivro(id, nomeEditora);
       res.json({msg:'livro atualizado com sucesso'});
     }
     catch(err) {
@@ -67,10 +70,10 @@ function atualizarEditoraLivro(req, res) {
 }
 function atualizarAnoLivro(req, res) {
     const id = +req.params.id;
-    let autor = req.body;
-  
+    let livro = req.body;
+    let Ano = livro.ano;
     try{ 
-      livrosService.atualizarAnoLivro(id, autor);
+      livrosService.atualizarAnoLivro(id, Ano);
       res.json({msg:'livro atualizado com sucesso'});
     }
     catch(err) {
@@ -78,9 +81,10 @@ function atualizarAnoLivro(req, res) {
     }
 }
 function buscarNomelivro(res, res){
-    const nome = req.body;
+    const livro = req.body;
+    const livroNome = livro.nome;
     try {
-        livro = livrosService.pesquisarPorLikeNome(nome);
+        livro = livrosService.pesquisarPorLikeNome(livroNome);
         res.json(livro);
     } catch (err) {
         res.status(err.id).json({msg: err.message});
@@ -107,6 +111,4 @@ module.exports={
     atualizarEditoraLivro,
     atualizarAnoLivro,
     buscarNomelivro
-
-
 }

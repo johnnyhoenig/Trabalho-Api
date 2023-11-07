@@ -12,7 +12,8 @@ function listarDevolucao(req, res) {
 
 function NovoEmprestimo(req, res) {
     const id = +req.params.id;
-    let matricula = req.body;
+    let user = req.body;
+    let matricula = user.matricula;
     try {
       emprestimoService.emprestimo(matricula,id);
       res.status(201).json({msg:'Emprestimo Realizado'})
@@ -22,7 +23,8 @@ function NovoEmprestimo(req, res) {
     }
 }
 function devolucao(req, res) {
-    const nome = req.body;
+    const livro = req.body;
+    let nome = livro.nome;
     try {
         emprestimoService.devolucao(nome);
         res.status(201).json({msg:'Devolucao Realizado'})
@@ -40,11 +42,22 @@ function deletar(req, res) {
       res.status(err.id).json({msg: err.message});
     }   
 }
+function buscarNomelivro(res, res){
+  const livro = req.body;
+  const livroNome = livro.nome;
+  try {
+      livro = emprestimoService.buscarLivroEmprestados(livroNome);
+      res.json(livro);
+  } catch (err) {
+      res.status(err.id).json({msg: err.message});
+  }
+}
 
 module.exports={
     listarEmprestimo,
     listarDevolucao,
     NovoEmprestimo,
     devolucao,
-    deletar
+    deletar,
+    buscarNomelivro
 }

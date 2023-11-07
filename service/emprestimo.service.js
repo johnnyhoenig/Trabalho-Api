@@ -45,13 +45,19 @@ function deletarEmprestimo(id) {
     }
 }
 // funçao criada para testar objeto alugar na busca no repositorio
-// function buscarLivroEmprestados(nome){
-//     return emprestimoRepository.pesquisarPorLikeNomeEmprestimo(nome);
-// }
+function buscarLivroEmprestados(nome){
+    const livro = emprestimoRepository.pesquisarPorLikeNomeEmprestimo(nome);
+    if (livro) {
+        return livro ;
+    } else {
+        throw {id: 404, message: "livro nao encontrado"};
+    }
+}
 module.exports = {
     listarEmprestimo,
     listardevolucao,
     emprestimo,
     devolucao,
     deletarEmprestimo,
+    buscarLivroEmprestados
 }
