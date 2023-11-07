@@ -6,13 +6,12 @@ function listar(req, res) {
 }
 
 function inserir(req, res) {
-    let usuario= req.body;
+    let cliente = req.body;
     try {
-      clienteService.inserir(usuario);
+      clienteService.inserir(cliente);
       res.status(201).json({msg:'Inserido com sucesso!'})
     }
     catch(err) {
-      //id-> 400 / msg -> msg de erro
       res.status(err.id).json({msg: err.message});
     }
 }

@@ -3,20 +3,18 @@ const router = express.Router()
 
 const clienteController = require('../controller/cliente_controller')
 
-app.use(express.json());
 
-
-router.post('/:id', clienteController.inserir);
+router.post('/', clienteController.inserir);
 
 router.get('/', clienteController.listar);
 router.get('/:id', clienteController.buscarPorId);
-router.get('/', clienteController.pesquisarPorLikeNome);
-router.get('/', clienteController.buscarPorMatricual);
+router.get('/buscaNome', clienteController.pesquisarPorLikeNome);
+router.get('/buscaMatricula', clienteController.buscarPorMatricual);
 
 
-router.put('/', clienteController.atualizarNome);
-router.put('/', clienteController.atualizarSenha);
-router.put('/', clienteController.atualizarEmail);
+router.put('/nome', clienteController.atualizarNome);
+router.put('/senha', clienteController.atualizarSenha);
+router.put('/email', clienteController.atualizarEmail);
 
 
 
